@@ -1,6 +1,6 @@
 import SteganographyPic.Companion.embedMessage
 import SteganographyPic.Companion.generateImage
-import SteganographyPic.Companion.retrieveEncodedMessageFromImage
+import SteganographyPic.Companion.retrieveEncodedImageFromImage
 import java.io.File
 import java.lang.NumberFormatException
 import javax.imageio.ImageIO
@@ -85,8 +85,9 @@ fun decode() {
     println()
     println("Retrieving Image...")
 
-    val retrievedImage = retrieveEncodedMessageFromImage(ImageIO.read(File(picPath)))
+    val retrievedImage = retrieveEncodedImageFromImage(ImageIO.read(File(picPath)))
     println("Retrieved Image Saved At: ${generateImage(retrievedImage, retrievedImagePath)}")
+    println("Image decoded successfully!")
 }
 
 private class WrongMenuChoiceException : Exception() {

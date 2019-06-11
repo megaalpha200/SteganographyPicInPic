@@ -16,25 +16,7 @@ class SteganographyPic {
         private val delimiterList = listOf("1111", "1010", "1111")
         private const val padding = "0000"
         private const val bufferGrouping = 3
-
-        private fun convertMessageToBinary(name : String) : Pair<ArrayList<String>, Map<String, Char>> {
-            val binaryNameArrayList = arrayListOf<String>()
-            val charBinMap = mutableMapOf<String, Char>()
-
-            println("Message: $name")
-            print("Binary Representation: ")
-
-            name.forEach {
-                val currCharBinRepresentation = String.format("%08d", Integer.toBinaryString(it.toInt()).toInt())
-                print("$currCharBinRepresentation ")
-                charBinMap[currCharBinRepresentation] = it
-                binaryNameArrayList.add(currCharBinRepresentation)
-            }
-
-            println()
-
-            return Pair(binaryNameArrayList, charBinMap)
-        }
+        private val separator = System.lineSeparator()
 
         fun generateImage(image : BufferedImage, picturePath : String) : String  {
             val picturePathFile = File(picturePath)
@@ -89,7 +71,6 @@ class SteganographyPic {
             val binConvertedNameArrayList = convertMessageToBinaryResult.first
             val binConvertedNameCharBinMap = convertMessageToBinaryResult.second*/
 
-            val separator = System.lineSeparator()
             val file = File(".\\debugEn.txt")
             val outputStream = FileOutputStream(file)
 
@@ -133,7 +114,7 @@ class SteganographyPic {
                             picToHidePixelGreen = listOf(picToHidePixelAreaBinList[startingIndex + 1], padding)
                             picToHidePixelBlue = listOf(picToHidePixelAreaBinList[startingIndex + 2], padding)
                             picToHidePixelAlpha = originalImgPixelAlpha
-                            picToHideRgbBinStr = picToHidePixelAlpha.joinToString(" ") + " | " + picToHidePixelRed.joinToString(" ") + " | " + picToHidePixelGreen.joinToString(" ") + " | " + picToHidePixelGreen.joinToString(" ")
+                            picToHideRgbBinStr = picToHidePixelAlpha.joinToString(" ") + " | " + picToHidePixelRed.joinToString(" ") + " | " + picToHidePixelGreen.joinToString(" ") + " | " + picToHidePixelBlue.joinToString(" ")
 
                             outputStream.write("BUFFER $separator".toByteArray())
 
@@ -147,7 +128,7 @@ class SteganographyPic {
                             picToHidePixelGreen = listOf(delimiterList[1], delimiterList[1])
                             picToHidePixelBlue = listOf(delimiterList[2], delimiterList[2])
                             picToHidePixelAlpha = originalImgPixelAlpha
-                            picToHideRgbBinStr = picToHidePixelAlpha.joinToString(" ") + " | " +  picToHidePixelRed.joinToString(" ") + " | " + picToHidePixelGreen.joinToString(" ") + " | " + picToHidePixelGreen.joinToString(" ")
+                            picToHideRgbBinStr = picToHidePixelAlpha.joinToString(" ") + " | " +  picToHidePixelRed.joinToString(" ") + " | " + picToHidePixelGreen.joinToString(" ") + " | " + picToHidePixelBlue.joinToString(" ")
 
                             outputStream.write("DELIMITER $separator".toByteArray())
                             insertDelimiter = false
@@ -214,7 +195,7 @@ class SteganographyPic {
             return newEncodedBufferedImage
         }
 
-        fun retrieveEncodedMessageFromImage(encodedPic: BufferedImage) : BufferedImage {
+        fun retrieveEncodedImageFromImage(encodedPic: BufferedImage) : BufferedImage {
             var retrievedImgHeight = 100
             var retrievedImgWidth = 100
 
@@ -226,7 +207,6 @@ class SteganographyPic {
             var retrievedImgYIndex = 0
             var retrievedImgXIndex = 0
 
-            val separator = System.lineSeparator()
             val file = File(".\\debugRet.txt")
             val outputStream = FileOutputStream(file)
 
@@ -248,20 +228,19 @@ class SteganographyPic {
                     val retrievedBin = encodedImgPixelRed[1] + encodedImgPixelGreen[1] + encodedImgPixelBlue[1]
 
                     if (!bufferRetrieved) {
-                        if (retrievedBin == delimiterList.joinToString("")) {
-                            bufferRetrieved = true
-                            retrievedImgHeight = BigInteger(retrievedBuffer.toString(), 2).toInt()
+                        when (retrievedBin) {
+                            delimiterList.joinToString("") -> {
+                                bufferRetrieved = true
+                                retrievedImgHeight = BigInteger(retrievedBuffer.toString(), 2).toInt()
 
-                            retrievedBufferedImg = BufferedImage(retrievedImgWidth, retrievedImgHeight, encodedBufferedImg.type)
-                            outputStream.write("Width: $retrievedImgWidth, Height: $retrievedImgHeight $separator$separator".toByteArray())
-                        }
-                        else {
-                            if (retrievedBin == bufferDelimiterList.joinToString("")) {
+                                outputStream.write("Width: $retrievedImgWidth, Height: $retrievedImgHeight $separator$separator".toByteArray())
+                                retrievedBufferedImg = BufferedImage(retrievedImgWidth, retrievedImgHeight, encodedBufferedImg.type)
+                            }
+                            bufferDelimiterList.joinToString("") -> {
                                 retrievedImgWidth = BigInteger(retrievedBuffer.toString(), 2).toInt()
                                 retrievedBuffer.clear()
                             }
-                            else
-                                retrievedBuffer.append(retrievedBin)
+                            else -> retrievedBuffer.append(retrievedBin)
                         }
                     }
                     else {
