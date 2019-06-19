@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.NoSuchFileException;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,6 +40,9 @@ public class Main {
                         throw new WrongMenuChoiceException();
                 }
             }
+            catch (NoSuchFileException e) {
+                System.out.println("Picture does not exist!");
+            }
             catch (NumberFormatException e) {
                 System.out.println("Please enter a number from 1 to 3!");
             }
@@ -55,17 +59,25 @@ public class Main {
         final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.print("Enter the location of the image you wish to embed: ");
-        final String embeddedImagPath = bufferedReader.readLine();
+        final String embeddedImgPath = bufferedReader.readLine();
         System.out.println();
+
+        if (!checkIfFileExists(embeddedImgPath))
+            throw new NoSuchFileException(embeddedImgPath);
+
         System.out.print("Enter the location of the image to be encoded: ");
-        final String originalPath = bufferedReader.readLine();
+        final String originalImgPath = bufferedReader.readLine();
         System.out.println();
+
+        if (!checkIfFileExists(originalImgPath))
+            throw new NoSuchFileException(originalImgPath);
+
         System.out.print("Enter the location where you wish to save the new encoded image: ");
         final String newPath = bufferedReader.readLine();
         System.out.println();
         System.out.println("Encoding Image...");
 
-        final String encodedImgSaveLoc = SteganographyPic.generateEncodedImage(SteganographyPic.embedMessage(ImageIO.read(new File(originalPath)), ImageIO.read(new File(embeddedImagPath))), newPath);
+        final String encodedImgSaveLoc = SteganographyPic.generateEncodedImage(SteganographyPic.embedMessage(ImageIO.read(new File(originalImgPath)), ImageIO.read(new File(embeddedImgPath))), newPath);
         System.out.println("Encoded Image Saved At: " + encodedImgSaveLoc);
         System.out.println("Image encoded successfully!");
     }
@@ -76,6 +88,10 @@ public class Main {
         System.out.print("Enter the location of the encoded image: ");
         final String picPath = bufferedReader.readLine();
         System.out.println();
+
+        if (!checkIfFileExists(picPath))
+            throw new NoSuchFileException(picPath);
+
         System.out.print("Enter the location where you wish to save the new retrieved image: ");
         final String retrievedImagePath = bufferedReader.readLine();
         System.out.println();
@@ -84,6 +100,10 @@ public class Main {
         final String decodedImgSaveLoc = SteganographyPic.generateEncodedImage(SteganographyPic.retrieveEncodedImageFromImage(ImageIO.read(new File(picPath))), retrievedImagePath);
         System.out.println("Retrieved Image Saved At: " + decodedImgSaveLoc);
         System.out.println("Image decoded successfully!");
+    }
+
+    private static boolean checkIfFileExists(String filename) {
+        return new File(filename).exists();
     }
 
     private static class WrongMenuChoiceException extends Exception {

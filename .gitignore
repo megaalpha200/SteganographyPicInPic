@@ -1,2 +1,4 @@
 Java.gitignore
+/**/.vs
+/**/x64
 /**/out

@@ -39,6 +39,9 @@ fun main() {
             }
 
         }
+        catch (e: NoSuchFileException) {
+            println("Picture does not exist!")
+        }
         catch (e: NumberFormatException) {
             println("Please enter a number from 1 to 3!")
         }
@@ -51,35 +54,38 @@ fun main() {
 }
 
 fun encode() {
-    try {
-        print("Enter the location of the image you wish to embed: ")
-        val embeddedImagPath = readLine()!!
-        println()
-        print("Enter the location of the image to be encoded: ")
-        val originalImgPath = readLine()!!
-        println()
-        print("Enter the location where you wish to save the new encoded image: ")
-        val newImgPath = readLine()!!
-        println()
-        println("Encoding Image...")
+    print("Enter the location of the image you wish to embed: ")
+    val embeddedImgPath = readLine()!!
+    println()
 
-        val newBufferedImg = embedMessage(ImageIO.read(File(originalImgPath)), ImageIO.read(File(embeddedImagPath)))
-        println("Encoded Image Saved At: ${generateImage(newBufferedImg, newImgPath)}")
-        println("Image encoded successfully!")
-    }
-    catch (e: SteganographyPic.Companion.OriginalPicTooSmallException) {
-        println(e.errMsg)
-    }
-    /*catch (e: Exception) {
-        println(e)
-        println("Something went wrong, please try again later.")
-    }*/
+    if (!checkIfFileExists(embeddedImgPath))
+        throw NoSuchFileException(File(embeddedImgPath))
+
+    print("Enter the location of the image to be encoded: ")
+    val originalImgPath = readLine()!!
+    println()
+
+    if (!checkIfFileExists(originalImgPath))
+        throw NoSuchFileException(File(originalImgPath))
+
+    print("Enter the location where you wish to save the new encoded image: ")
+    val newImgPath = readLine()!!
+    println()
+    println("Encoding Image...")
+
+    val newBufferedImg = embedMessage(ImageIO.read(File(originalImgPath)), ImageIO.read(File(embeddedImgPath)))
+    println("Encoded Image Saved At: ${generateImage(newBufferedImg, newImgPath)}")
+    println("Image encoded successfully!")
 }
 
 fun decode() {
     print("Enter the location of the encoded image: ")
     val picPath = readLine()!!
     println()
+
+    if (!checkIfFileExists(picPath))
+        throw NoSuchFileException(File(picPath))
+
     print("Enter the location where you wish to save the new retrieved image: ")
     val retrievedImagePath = readLine()!!
     println()
@@ -88,6 +94,10 @@ fun decode() {
     val retrievedImage = retrieveEncodedImageFromImage(ImageIO.read(File(picPath)))
     println("Retrieved Image Saved At: ${generateImage(retrievedImage, retrievedImagePath)}")
     println("Image decoded successfully!")
+}
+
+private fun checkIfFileExists(filename: String): Boolean {
+    return File(filename).exists()
 }
 
 private class WrongMenuChoiceException : Exception() {
