@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>steganography_pic_in_pic</label>
+		<id>11</id>
+		<version>0</version>
+	</settings>
+	<users>
+		<user>
+			<path>steganography_pic_in_pic.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>steganography_pic_in_pic.jcp</path>
+		</project>
+	</projects>
+</workspace>

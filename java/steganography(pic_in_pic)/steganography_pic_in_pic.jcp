@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+	<settings>
+		<label>steganography_pic_in_pic</label>
+		<root_path>\</root_path>
+		<output_path>classes\</output_path>
+		<source_path>src\</source_path>
+		<jdkprofile_ref>JDK version 1.8.0_11</jdkprofile_ref>
+		<compiler_ref/>
+		<ant_ref/>
+	</settings>
+	<ant_events/>
+	<run_items/>
+	<runtimes>
+		<runtime>
+			<label>&lt;Default&gt;</label>
+			<application_ref/>
+			<applet_ref/>
+			<debugger_ref/>
+			<param/>
+			<run>Main</run>
+			<verify>true</verify>
+		</runtime>
+	</runtimes>
+	<libraries/>
+	<files>
+		<include>
+			<folderitem>
+				<path>src</path>
+			</folderitem>
+			<folderitem>
+				<path>src\stringmanip</path>
+			</folderitem>
+			<fileitem>
+				<path>src\Main.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
+				<path>src\SteganographyPic.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
+				<path>src\stringmanip\StringManipulations.java</path>
+				<folder>src\stringmanip</folder>
+			</fileitem>
+		</include>
+	</files>
+	<tasks/>
+</project>

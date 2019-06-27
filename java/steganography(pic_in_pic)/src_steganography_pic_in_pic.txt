@@ -1,0 +1,3 @@
+"D:\\Users\\Jose A. Alvarado\\MEGA\\Research - Dr. Li\\Assignment1\\Steganography (Picture in Picture)\\SteganographyPicInPic\\java\\steganography(pic_in_pic)\\src\\Main.java"
+"D:\\Users\\Jose A. Alvarado\\MEGA\\Research - Dr. Li\\Assignment1\\Steganography (Picture in Picture)\\SteganographyPicInPic\\java\\steganography(pic_in_pic)\\src\\SteganographyPic.java"
+"D:\\Users\\Jose A. Alvarado\\MEGA\\Research - Dr. Li\\Assignment1\\Steganography (Picture in Picture)\\SteganographyPicInPic\\java\\steganography(pic_in_pic)\\src\\stringmanip\\StringManipulations.java"
