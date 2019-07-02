@@ -54,6 +54,8 @@ public:
 	}
 } originPicSmall;
 
+//stringstream //outputStream = stringstream();
+
 int main()
 {
 	/*vector<string> test = { "Hello", "all", "the", "people", "of", "the", "world!" };
@@ -136,7 +138,7 @@ void encode()
 	getline(cin, originalPath);
 	cout << endl;
 
-	if (!checkIfFileExists(embeddedImgPath))
+	if (!checkIfFileExists(originalPath))
 		throw exception("Picture does not exist!");
 
 	cout << "Enter the location where you wish to save the new encoded image: ";
@@ -150,10 +152,16 @@ void encode()
 	embedMessage(img, imgToHide, newImg);
 	encodedImgSaveLoc = generateEncodedImage(newImg, newPath);
 	cout << endl;
+
+	/*ofstream outFile = ofstream("debugEn.txt");
+	outFile << //outputStream.str();
+	outFile.flush();
+	outFile.close();*/
+
 	cout << "Encoded Image Saved At: " << encodedImgSaveLoc << endl;
 	cout << "Image encoded successfully!" << endl;
 
-	namedWindow("Original_Image", WINDOW_NORMAL);
+	/*namedWindow("Original_Image", WINDOW_NORMAL);
 	imshow("Original_Image", img);
 
 	namedWindow("Hidden_Image", WINDOW_NORMAL);
@@ -161,7 +169,7 @@ void encode()
 
 	namedWindow("Encoded_Image", WINDOW_NORMAL);
 	imshow("Encoded_Image", newImg);
-	waitKey(0);
+	waitKey(0);*/
 
 	cout << endl << endl;
 }
@@ -189,15 +197,21 @@ void decode()
 	retrieveEncodedImageFromImage(encodedImg, retImg);
 	decodedImgSaveLoc = generateEncodedImage(retImg, retrievedImagePath);
 	cout << endl;
+
+	/*ofstream outFile = ofstream("debugRet.txt");
+	outFile << //outputStream.str();
+	outFile.flush();
+	outFile.close();*/
+
 	cout << "Retrieved Image Saved At: " << decodedImgSaveLoc << endl;
 	cout << "Image decoded successfully!" << endl;
 
-	namedWindow("Encoded_Image", WINDOW_NORMAL);
+	/*namedWindow("Encoded_Image", WINDOW_NORMAL);
 	imshow("Encoded_Image", encodedImg);
 
 	namedWindow("Retrieved_Image", WINDOW_NORMAL);
 	imshow("Retrieved_Image", retImg);
-	waitKey(0);
+	waitKey(0);*/
 
 	cout << endl << endl;
 }
@@ -226,6 +240,16 @@ bool checkIfFileExists(string filename)
 	fs::path filePath = fs::path(full);
 
 	return fs::exists(filePath);
+}
+
+string getFullPath(string relPath)
+{
+	char full[_MAX_PATH];
+	_fullpath(full, relPath.c_str(), _MAX_PATH);
+
+	fs::path filePath = fs::path(full);
+
+	return full;
 }
 
 void completeGroupsForPixelEmbedding(int input, vector<string>& completeList)
@@ -282,9 +306,9 @@ void embedMessage(Mat &picToEncode, Mat &picToHide, Mat &encodedImg)
 	if (picToHidePixelArea > (originalPicPixelArea - totalPixelsForBuffer))
 		throw originPicSmall;
 
-	ofstream outputStream = ofstream("debugEn.txt");
+	//outputStream = stringstream();
 
-	outputStream << "Image in Binary..." << endl;
+	//outputStream << "Image in Binary..." << endl;
 
 	int pixelsLeftForBuffer = totalPixelsForBuffer;
 	bool insertDelimiter = false;
@@ -315,11 +339,11 @@ void embedMessage(Mat &picToEncode, Mat &picToHide, Mat &encodedImg)
 				string originalImgPixelBlueStr = originalImgPixelBlue[0] + " " + originalImgPixelBlue[1];
 				originalImgRgbBinStr = bitset<8>(originalImgPixel[2]).to_string() + " | " + bitset<8>(originalImgPixel[1]).to_string() + " | " + bitset<8>(originalImgPixel[0]).to_string();
 
-				outputStream << "Original Image Pixel (x:" << xIndex << ", y:" << yIndex << "): R - " << originalImgPixelRedStr << " G - " << originalImgPixelGreenStr << " B - " << originalImgPixelBlueStr;
-				outputStream << endl;
-				outputStream << "Original Image Pixel (Full): " << originalImgRgbBinStr;
+				//outputStream << "Original Image Pixel (x:" << xIndex << ", y:" << yIndex << "): R - " << originalImgPixelRedStr << " G - " << originalImgPixelGreenStr << " B - " << originalImgPixelBlueStr;
+				//outputStream << endl;
+				//outputStream << "Original Image Pixel (Full): " << originalImgRgbBinStr;
 
-				outputStream << endl;
+				//outputStream << endl;
 
 				vector<string> picToHidePixelRed;
 				vector<string> picToHidePixelGreen;
@@ -342,7 +366,7 @@ void embedMessage(Mat &picToEncode, Mat &picToHide, Mat &encodedImg)
 					picToHidePixelBlueStr = picToHidePixelBlue[0] + " " + picToHidePixelBlue[1];
 					picToHideRgbBinStr = picToHidePixelRedStr + " | " + picToHidePixelGreenStr + " | " + picToHidePixelBlueStr;
 
-					outputStream << "BUFFER " << endl;
+					//outputStream << "BUFFER " << endl;
 
 					pixelsLeftForBuffer--;
 
@@ -360,7 +384,7 @@ void embedMessage(Mat &picToEncode, Mat &picToHide, Mat &encodedImg)
 					picToHidePixelBlueStr = picToHidePixelBlue[0] + " " + picToHidePixelBlue[1];
 					picToHideRgbBinStr = picToHideRgbBinStr = picToHidePixelRedStr + " | " + picToHidePixelGreenStr + " | " + picToHidePixelBlueStr;
 
-					outputStream << "DELIMITER " << endl;
+					//outputStream << "DELIMITER " << endl;
 					insertDelimiter = false;
 				}
 				else
@@ -379,11 +403,11 @@ void embedMessage(Mat &picToEncode, Mat &picToHide, Mat &encodedImg)
 					picToHideRgbBinStr = bitset<8>(picToHidePixel[2]).to_string() + " | " + bitset<8>(picToHidePixel[1]).to_string() + " | " + bitset<8>(picToHidePixel[0]).to_string();
 				}
 
-				outputStream << "Picture To Hide Image Pixel (x:" << picToHideXIndex << ", y:" << picToHideYIndex << "): R - " << picToHidePixelRedStr << " G - " << picToHidePixelGreenStr << " B - " << picToHidePixelBlueStr;
-				outputStream << endl;
-				outputStream << "Picture To Hide Image Pixel (Full): " << picToHideRgbBinStr;
+				//outputStream << "Picture To Hide Image Pixel (x:" << picToHideXIndex << ", y:" << picToHideYIndex << "): R - " << picToHidePixelRedStr << " G - " << picToHidePixelGreenStr << " B - " << picToHidePixelBlueStr;
+				//outputStream << endl;
+				//outputStream << "Picture To Hide Image Pixel (Full): " << picToHideRgbBinStr;
 
-				outputStream << endl;
+				//outputStream << endl;
 
 				/*vector<string> newImgPixelRed = { originalImgPixelRed[0], picToHidePixelRed[0] };
 				vector<string> newImgPixelGreen = { originalImgPixelGreen[0], picToHidePixelGreen[0] };
@@ -393,11 +417,11 @@ void embedMessage(Mat &picToEncode, Mat &picToHide, Mat &encodedImg)
 				string newImgPixelBlueStr = originalImgPixelBlue[0] + picToHidePixelBlue[0];
 				string newImgRgbBinStr = newImgPixelRedStr + " | " + newImgPixelGreenStr + " | " + newImgPixelBlueStr;
 
-				outputStream << "New Image Pixel (x:" << xIndex << ", y:" << yIndex << "): R - " << newImgPixelRedStr << " G - " << newImgPixelGreenStr << " B - " << newImgPixelBlueStr;
-				outputStream << endl;
-				outputStream << "New Image Pixel (Full): " << newImgRgbBinStr;
+				//outputStream << "New Image Pixel (x:" << xIndex << ", y:" << yIndex << "): R - " << newImgPixelRedStr << " G - " << newImgPixelGreenStr << " B - " << newImgPixelBlueStr;
+				//outputStream << endl;
+				//outputStream << "New Image Pixel (Full): " << newImgRgbBinStr;
 
-				outputStream << endl << endl;
+				//outputStream << endl << endl;
 
 				encodedImg.at<Vec3b>(xIndex, yIndex) = Vec3b(stoi(newImgPixelBlueStr, nullptr, 2), stoi(newImgPixelGreenStr, nullptr, 2), stoi(newImgPixelRedStr, nullptr, 2));
 			}
@@ -423,7 +447,7 @@ void embedMessage(Mat &picToEncode, Mat &picToHide, Mat &encodedImg)
 				picToHideYIndex++;
 		}
 	}
-	outputStream.close();
+	//outputStream.flush();
 
 	return;
 }
@@ -443,7 +467,7 @@ void retrieveEncodedImageFromImage(Mat &encodedImg, Mat &retrievedImg)
 	int retrievedImgYIndex = 0;
 	int retrievedImgXIndex = 0;
 
-	ofstream outputStream = ofstream("debugRet.txt");
+	//outputStream = stringstream();
 
 	for (int xIndex = 0; xIndex < encodedImgHeight; xIndex++)
 	{
@@ -468,10 +492,10 @@ void retrieveEncodedImageFromImage(Mat &encodedImg, Mat &retrievedImg)
 			encodedImgPixelBlueStr = encodedImgPixelBlue[0] + " " + encodedImgPixelBlue[1];
 			encodedImgRgbBinStr = encodedImgPixelRedStr + " | " + encodedImgPixelGreenStr + " | " + encodedImgPixelBlueStr;
 
-			outputStream << "Encoded Image Pixel (x:" << xIndex << ", y:" << yIndex << "): R - " << encodedImgPixelRedStr << " G - " << encodedImgPixelGreenStr << " B - " << encodedImgPixelBlueStr;
-			outputStream << endl;
-			outputStream << "Encoded Image Pixel (Full): " << encodedImgRgbBinStr;
-			outputStream << endl;
+			//outputStream << "Encoded Image Pixel (x:" << xIndex << ", y:" << yIndex << "): R - " << encodedImgPixelRedStr << " G - " << encodedImgPixelGreenStr << " B - " << encodedImgPixelBlueStr;
+			//outputStream << endl;
+			//outputStream << "Encoded Image Pixel (Full): " << encodedImgRgbBinStr;
+			//outputStream << endl;
 
 			string retrievedBin = encodedImgPixelRed[1] + encodedImgPixelGreen[1] + encodedImgPixelBlue[1];
 
@@ -482,7 +506,7 @@ void retrieveEncodedImageFromImage(Mat &encodedImg, Mat &retrievedImg)
 					bufferRetrieved = true;
 					retrievedImgHeight = stoi(retrievedBuffer, nullptr, 2);
 
-					outputStream << "Width: " << retrievedImgWidth << " Height: " << retrievedImgHeight << endl << endl;
+					//outputStream << "Width: " << retrievedImgWidth << " Height: " << retrievedImgHeight << endl << endl;
 
 					retrievedImg = Mat(retrievedImgHeight, retrievedImgWidth, CV_8UC3, Scalar(0, 0, 255));
 				}
@@ -510,11 +534,11 @@ void retrieveEncodedImageFromImage(Mat &encodedImg, Mat &retrievedImg)
 					string retrievedImgPixelBlueStr = encodedImgPixelBlue[1] + _padding;
 					string retrievedImgRgbBinStr = retrievedImgPixelRedStr + " | " + retrievedImgPixelGreenStr + " | " + retrievedImgPixelBlueStr;
 
-					outputStream << "Retrieved Image Pixel (x:" << retrievedImgXIndex << ", y:" << retrievedImgYIndex << "): R - " << retrievedImgPixelRedStr << " G - " << retrievedImgPixelGreenStr << " B - " << retrievedImgPixelBlueStr;
-					outputStream << endl;
-					outputStream << "Retrieved Image Pixel (Full): " << retrievedImgRgbBinStr;
+					//outputStream << "Retrieved Image Pixel (x:" << retrievedImgXIndex << ", y:" << retrievedImgYIndex << "): R - " << retrievedImgPixelRedStr << " G - " << retrievedImgPixelGreenStr << " B - " << retrievedImgPixelBlueStr;
+					//outputStream << endl;
+					//outputStream << "Retrieved Image Pixel (Full): " << retrievedImgRgbBinStr;
 
-					outputStream << endl << endl;
+					//outputStream << endl << endl;
 
 					retrievedImg.at<Vec3b>(retrievedImgXIndex, retrievedImgYIndex) = Vec3b(stoi(retrievedImgPixelBlueStr, nullptr, 2), stoi(retrievedImgPixelGreenStr, nullptr, 2), stoi(retrievedImgPixelRedStr, nullptr, 2));
 				}
@@ -531,7 +555,7 @@ void retrieveEncodedImageFromImage(Mat &encodedImg, Mat &retrievedImg)
 	}
 
 	outer:
-	outputStream.close();
+	//outputStream.flush();
 
 	return;
 }
