@@ -61,13 +61,6 @@ int main()
 	/*vector<string> test = { "Hello", "all", "the", "people", "of", "the", "world!" };
 	cout << joinToString(test, " ");*/
 
-	/*string test = "1000000020000000300000004000";
-	vector<string> c;
-	chunkString(test, 8, c);
-
-	for (int i = 0; i < c.size(); i++)
-		cout << c[i] << " ";*/
-
 	do
 	{
 		try
