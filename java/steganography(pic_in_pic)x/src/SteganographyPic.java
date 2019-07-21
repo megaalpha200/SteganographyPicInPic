@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SteganographyPic {
@@ -29,10 +30,6 @@ public class SteganographyPic {
     private static final int bufferGrouping = 3;
     private static final String separator = System.lineSeparator();
 
-    public static void main(String[] args) {
-        System.out.println();
-    }
-
     public static String generateEncodedImage(BufferedImage image, String picturePath) throws IOException {
         final File picturePathFile = new File(picturePath);
 
@@ -41,29 +38,23 @@ public class SteganographyPic {
     }
 
     private static List<String> completeGroupsForPixelEmbedding(int input) {
-        final List<String> reversedBinListNoPadding = StringManipulations.chunkString(StringManipulations.reverseString(Integer.toBinaryString(input)), 4);
-        final ArrayList<String> reversedBinList = new ArrayList<>(0);
+        String binInput = Integer.toBinaryString(input);
+        int paddingAmt = (int) Math.ceil(binInput.length() / 4.0) * 4;
 
-        for (String s : reversedBinListNoPadding) {
-            reversedBinList.add(StringManipulations.padRightWithZeros(s, 4));
-        }
+        int currGroupAmt = paddingAmt / 4;
+        int targetGroupAmt = (int) Math.ceil(currGroupAmt / (bufferGrouping+0.0)) * bufferGrouping;
+        int neededGroupAmt = targetGroupAmt - currGroupAmt;
 
-        if (reversedBinList.size() % bufferGrouping != 0) {
-            final int listLimit = ((reversedBinList.size() / bufferGrouping) + 1) * bufferGrouping;
-            for (int i = reversedBinList.size(); i < listLimit; i++) {
-                reversedBinList.add(padding);
-            }
-        }
+        int overallGroupPadding = paddingAmt;
+        if (overallGroupPadding % bufferGrouping != 0)
+            overallGroupPadding = (int) Math.ceil(overallGroupPadding / (bufferGrouping+0.0) + neededGroupAmt) * bufferGrouping;
 
-        final ArrayList<String> binList = new ArrayList<>(0);
-        for (int j = reversedBinList.size() - 1; j >= 0; j--) {
-            binList.add(StringManipulations.reverseString(reversedBinList.get(j)));
-        }
-
-        return binList;
+        return StringManipulations.chunkString(StringManipulations.padLeftWithZeros(binInput, overallGroupPadding), 4);
     }
 
     public static BufferedImage embedMessage(BufferedImage pictureToEncode, BufferedImage pictureToHide) throws OriginalPicTooSmallException, IOException {
+        Date startTime = new Date();
+
         final BufferedImage originalBufferedImg = pictureToEncode;
         final int originalPicWidth = originalBufferedImg.getWidth();
         final int originalPicHeight = originalBufferedImg.getHeight();
@@ -89,12 +80,12 @@ public class SteganographyPic {
             throw new OriginalPicTooSmallException();
         }
 
-        final BufferedImage newEncodedBufferedImage = new BufferedImage(originalPicWidth, originalPicHeight, originalBufferedImg.getType());
-
+        final BufferedImage newEncodedBufferedImage = new BufferedImage(originalBufferedImg.getColorModel(), originalBufferedImg.getRaster(), originalBufferedImg.isAlphaPremultiplied(), null);
+        
         final File file = new File(".\\debugEn.txt");
         final FileOutputStream outputStream = new FileOutputStream(file);
 
-        outputStream.write(("Image in Binary..." + separator).getBytes());
+        outputStream.write(("Image in Binary..." + separator + separator).getBytes());
 
         int pixelsLeftForBuffer = totalPixelsForBuffer;
         boolean insertDelimiter = false;
@@ -102,7 +93,7 @@ public class SteganographyPic {
         int picToHideXIndex = -2;
         boolean shouldEmbedPixel = true;
 
-        for (int yIndex = 0; yIndex < originalPicHeight; yIndex++) {
+        outer: for (int yIndex = 0; yIndex < originalPicHeight; yIndex++) {
             for (int xIndex = 0; xIndex < originalPicWidth; xIndex++) {
                 final int originalImgPixel = originalBufferedImg.getRGB(xIndex, yIndex);
 
@@ -186,7 +177,8 @@ public class SteganographyPic {
                     newEncodedBufferedImage.setRGB(xIndex, yIndex, (new BigInteger(newImgRgbBinStr, 2)).intValue());
                 }
                 else {
-                    newEncodedBufferedImage.setRGB(xIndex, yIndex, originalImgPixel);
+//                    newEncodedBufferedImage.setRGB(xIndex, yIndex, originalImgPixel);
+                    break outer;
                 }
 
                 if (picToHideYIndex + 1 == picToHideHeight && picToHideXIndex + 1 == picToHideWidth) {
@@ -207,11 +199,17 @@ public class SteganographyPic {
 
         outputStream.flush();
         outputStream.close();
+        
+        Date endTime = new Date();
+        double timeDiff = (endTime.getTime() - startTime.getTime()) / 1000.0;
+        System.out.println("\nEncoding Time: " +  timeDiff  + " secs\n\n");
 
         return newEncodedBufferedImage;
     }
 
     public static BufferedImage retrieveEncodedImageFromImage(BufferedImage encodedPic) throws IOException {
+        Date startTime = new Date();
+
         int retrievedImgHeight = 100;
         int retrievedImgWidth = 100;
 
@@ -222,7 +220,7 @@ public class SteganographyPic {
         StringBuilder retrievedBuffer = new StringBuilder();
         int retrievedImgYIndex = 0;
         int retrievedImgXIndex = 0;
-
+        
         final File file = new File(".\\debugRet.txt");
         final FileOutputStream outputStream = new FileOutputStream(file);
 
@@ -291,7 +289,11 @@ public class SteganographyPic {
 
         outputStream.flush();
         outputStream.close();
-
+        
+        Date endTime = new Date();
+        double timeDiff = (endTime.getTime() - startTime.getTime()) / 1000.0;
+        System.out.println("\nDecoding Time: " +  timeDiff  + " secs\n\n");
+        
         return retrievedBufferedImg;
     }
 

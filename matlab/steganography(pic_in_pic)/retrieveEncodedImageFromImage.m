@@ -3,6 +3,10 @@
 % returns a 3x3 array which is the hidden image.
 
 function retImg = retrieveEncodedImageFromImage(encodedImg)
+    startDateTime = datetime('now', 'Format', 'dd-MM-yyyy HH:mm:ss.SSS');
+    
+    fileID = fopen('debugRet.txt', 'wt');
+    
     bufferGrouping = getBufferGrouping();
 	bufferDelimiter = getBufferDelimiter();
 	padding = getPadding();
@@ -12,8 +16,6 @@ function retImg = retrieveEncodedImageFromImage(encodedImg)
     retrievedImgWidth = 100;
     
     [encodedImgHeight, encodedImgWidth, ~] = size(encodedImg);
-    
-    fileID = fopen('debugRET.txt', 'wt');
     
     bufferRetrieved = false;
     retrievedBuffer = '';
@@ -100,4 +102,10 @@ function retImg = retrieveEncodedImageFromImage(encodedImg)
     end
     
     fclose(fileID);
+    
+    endDateTime = datetime('now', 'Format', 'dd-MM-yyyy HH:mm:ss.SSS');
+    td = endDateTime - startDateTime;
+    td.Format = 's';
+    td = char(td);
+    fprintf('\nDecoding Time: %s\n\n', td);
 end

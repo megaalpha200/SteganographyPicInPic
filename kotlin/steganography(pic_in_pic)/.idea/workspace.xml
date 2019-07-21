@@ -2,14 +2,57 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9113e64a-a6ac-4a55-b1d2-d368178dd24d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../c++/stega(pic_in_pic)/stega(pic_in_pic)/Source.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../c++/stega(pic_in_pic)/stega(pic_in_pic)/Source.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../c++/stega(pic_in_pic)/stega(pic_in_pic)/new.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../c++/stega(pic_in_pic)/stega(pic_in_pic)/ret.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../c++/stega(pic_in_pic)/stega(pic_in_pic)/stega(pic_in_pic).vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../c++/stega(pic_in_pic)/stega(pic_in_pic)/stega(pic_in_pic).vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$OriginalPicTooSmallException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic$OriginalPicTooSmallException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/SteganographyPic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/debugEn.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/debugRet.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/new.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/classes/ret.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/src/SteganographyPic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/src/SteganographyPic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/src/stringmanip/StringManipulations.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/src/stringmanip/StringManipulations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/steganography_pic_in_pic.jcw" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)/steganography_pic_in_pic.jcw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/debugEn.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/debugRet.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/new.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/ret.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/src/SteganographyPic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/src/SteganographyPic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/src/stringmanip/StringManipulations.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x/src/stringmanip/StringManipulations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debugEn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/debugEn.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debugEn.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/debugRet.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ret.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SteganographyPic.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SteganographyPic.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/completeGroupsForPixelEmbedding.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/completeGroupsForPixelEmbedding.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/debugEN.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/debugRET.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/embedMessage.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/embedMessage.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/new.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/ret.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/retrieveEncodedImageFromImage.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/retrieveEncodedImageFromImage.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/steganography_pic_in_pic.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../matlab/steganography(pic_in_pic)/steganography_pic_in_pic.m" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,23 +66,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SteganographyPic.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="243" column="25" selection-start-line="243" selection-start-column="25" selection-end-line="243" selection-end-column="25" />
-              <folding>
-                <element signature="e#40#237#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="646">
+              <caret line="74" column="58" lean-forward="true" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="55" column="14" lean-forward="true" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
+            <state relative-caret-position="901">
+              <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -50,9 +90,12 @@
     <findStrings>
       <find>0000</find>
       <find>4</find>
+      <find>.toByteArray()</find>
+      <find>fileOutputStringBuilder.append</find>
     </findStrings>
     <replaceStrings>
       <replace>bufferGrouping</replace>
+      <replace>outputStream.write</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -64,48 +107,27 @@
         <option value="$PROJECT_DIR$/src/src/Steganography.kt" />
         <option value="$PROJECT_DIR$/src/src/SteganographyPic.kt" />
         <option value="$PROJECT_DIR$/src/src/main.kt" />
-        <option value="$PROJECT_DIR$/src/SteganographyPic.kt" />
         <option value="$PROJECT_DIR$/src/main.kt" />
+        <option value="$PROJECT_DIR$/src/SteganographyPic.kt" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-18" />
-    <option name="y" value="-10" />
-    <option name="width" value="1296" />
-    <option name="height" value="788" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="960" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="steganography(pic_in_pic)" type="b2602c69:ProjectViewProjectNode" />
-              <item name="steganography(pic_in_pic)" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="steganography(pic_in_pic)" type="b2602c69:ProjectViewProjectNode" />
-              <item name="steganography(pic_in_pic)" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Stegonography (Data in Picture)/SteganographyProject/java/steganography" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../java/steganography(pic_in_pic)x" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -203,24 +225,30 @@
       <workItem from="1560195126763" duration="2737000" />
       <workItem from="1560200526632" duration="11746000" />
       <workItem from="1560884184226" duration="4928000" />
+      <workItem from="1562865466479" duration="2259000" />
+      <workItem from="1562873873972" duration="2412000" />
+      <workItem from="1562944651830" duration="2939000" />
+      <workItem from="1563208655107" duration="1080000" />
+      <workItem from="1563467538255" duration="11255000" />
+      <workItem from="1563549863938" duration="1897000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79276000" />
+    <option name="totallyTimeSpent" value="101118000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="7" />
+    <frame x="0" y="0" width="960" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27427185" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.29371002" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32949308" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32819384" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39976957" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -246,23 +274,24 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/src/SteganographyPic.kt" />
     <entry file="file://$PROJECT_DIR$/src/src/main.kt" />
     <entry file="file://$PROJECT_DIR$/src/SteganographyPic.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="243" column="25" selection-start-line="243" selection-start-column="25" selection-end-line="243" selection-end-column="25" />
-          <folding>
-            <element signature="e#40#237#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="646">
+          <caret line="74" column="58" lean-forward="true" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="55" column="14" lean-forward="true" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
+        <state relative-caret-position="901">
+          <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
         </state>
       </provider>
     </entry>

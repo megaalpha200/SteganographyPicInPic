@@ -12,9 +12,13 @@ binInput = dec2bin(input);
 paddingAmt = ceil(paddingAmt/4)*4;
 bufferGrouping = getBufferGrouping();
 
+currGroupAmt = paddingAmt / 4;
+targetGroupAmt = ceil(currGroupAmt/bufferGrouping) * bufferGrouping;
+neededGroupAmt = targetGroupAmt - currGroupAmt;
+
 overallGroupPadding = paddingAmt;
 if (mod(overallGroupPadding, bufferGrouping) ~= 0)
-    overallGroupPadding = (ceil(overallGroupPadding / getBufferGrouping()) + 1) * getBufferGrouping();
+    overallGroupPadding = (ceil(overallGroupPadding / bufferGrouping) + neededGroupAmt) * bufferGrouping;
 end
 
 paddedBinInput = padString(binInput, '0', overallGroupPadding, 0);

@@ -33,8 +33,8 @@ while continueRun
                 break;
         end
     catch exception
-        %fprintf([exception.message '\n\n']);
-        rethrow(exception);
+        fprintf([exception.message '\n\n']);
+        %rethrow(exception);
     end
 end
 

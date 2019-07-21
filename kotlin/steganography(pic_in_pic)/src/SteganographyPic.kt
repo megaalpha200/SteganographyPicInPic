@@ -8,7 +8,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.lang.StringBuilder
 import java.math.BigInteger
+import java.util.*
 import javax.imageio.ImageIO
+import kotlin.math.ceil
 
 class SteganographyPic {
     companion object {
@@ -26,27 +28,25 @@ class SteganographyPic {
         }
 
         fun completeGroupsForPixelEmbedding(input: Int) : List<String> {
-            val reversedBinList = Integer.toBinaryString(input).reversed().chunked(4) { it.padEnd(4, '0').toString() }
-                .toMutableList()
+            val binInput = Integer.toBinaryString(input)
+            val paddingAmt = ceil(binInput.length / 4.0).toInt() * 4
 
-            if (reversedBinList.size % bufferGrouping != 0) {
-                val listLimit = ((reversedBinList.size / bufferGrouping) + 1) * bufferGrouping
-                for (i in reversedBinList.size until listLimit) {
-                    reversedBinList.add(padding)
-                }
-            }
-            reversedBinList.reverse()
+            val currGroupAmt = paddingAmt / 4
+            val targetGroupAmt = ceil(currGroupAmt / (bufferGrouping + 0.0)).toInt() * bufferGrouping
+            val neededGroupAmt = targetGroupAmt - currGroupAmt
 
-            val binList = mutableListOf<String>()
-            reversedBinList.forEach {
-                binList.add(it.reversed())
-            }
+            var overallGroupPadding = paddingAmt
+            if (overallGroupPadding % bufferGrouping != 0)
+                overallGroupPadding =
+                    ceil(overallGroupPadding / (bufferGrouping + 0.0) + neededGroupAmt).toInt() * bufferGrouping
 
-            return binList
+            return binInput.padStart(overallGroupPadding, '0').chunked(4)
         }
 
         @Throws(OriginalPicTooSmallException::class)
         fun embedMessage(pictureToEncode : BufferedImage, pictureToHide: BufferedImage) : BufferedImage {
+            val startTime = Date()
+
             val originalBufferedImg: BufferedImage = pictureToEncode
             val originalPicWidth: Int = originalBufferedImg.width
             val originalPicHeight: Int = originalBufferedImg.height
@@ -65,17 +65,12 @@ class SteganographyPic {
             if (picToHidePixelArea > (originalPicPixelArea - totalPixelsForBuffer))
                 throw OriginalPicTooSmallException()
 
-            val newEncodedBufferedImage = BufferedImage(originalPicWidth, originalPicHeight, originalBufferedImg.type)
-
-            /*val convertMessageToBinaryResult = convertMessageToBinary(name)
-            val binConvertedNameArrayList = convertMessageToBinaryResult.first
-            val binConvertedNameCharBinMap = convertMessageToBinaryResult.second*/
+            val newEncodedBufferedImage = BufferedImage(originalBufferedImg.colorModel, originalBufferedImg.raster, originalBufferedImg.isAlphaPremultiplied, null)
 
             val file = File(".\\debugEn.txt")
             val outputStream = FileOutputStream(file)
 
-            /*outputStream.write("$separator$separator".toByteArray())
-            outputStream.write("Image in Binary...$separator".toByteArray())*/
+            outputStream.write("Image in Binary...$separator$separator".toByteArray())
 
             var pixelsLeftForBuffer = totalPixelsForBuffer
             var insertDelimiter = false
@@ -83,11 +78,12 @@ class SteganographyPic {
             var picToHideXIndex = -2
             var shouldEmbedPixel = true
 
-            for (yIndex in (0 until originalPicHeight)) {
+            outer@ for (yIndex in (0 until originalPicHeight)) {
                 for (xIndex in (0 until originalPicWidth)) {
                     val originalImgPixel = originalBufferedImg.getRGB(xIndex, yIndex)
 
                     if (shouldEmbedPixel) {
+
                         val originalImgPixelColor = Color(originalImgPixel)
                         val originalImgPixelRed = Integer.toBinaryString(originalImgPixelColor.red).padStart(8, '0').chunked(4)
                         val originalImgPixelGreen = Integer.toBinaryString(originalImgPixelColor.green).padStart(8, '0').chunked(4)
@@ -165,12 +161,10 @@ class SteganographyPic {
                         outputStream.write(separator.toByteArray())
 
                         newEncodedBufferedImage.setRGB(xIndex, yIndex, BigInteger(newImgRgbBinStr, 2).toInt())
-
-                        /*if (yIndex - 1  > picToHideHeight || xIndex - 1  > picToHideWidth)
-                            insertDelimiter = true*/
                     }
                     else {
-                        newEncodedBufferedImage.setRGB(xIndex, yIndex, originalImgPixel)
+                        //newEncodedBufferedImage.setRGB(xIndex, yIndex, originalImgPixel)
+                        break@outer
                     }
 
                     if (picToHideYIndex + 1 == picToHideHeight && picToHideXIndex + 1 == picToHideWidth) {
@@ -192,10 +186,16 @@ class SteganographyPic {
             outputStream.flush()
             outputStream.close()
 
+            val endTime = Date()
+            val timeDiff = (endTime.time - startTime.time) / 1000.0
+            println("\nEncoding Time: $timeDiff secs\n\n")
+
             return newEncodedBufferedImage
         }
 
         fun retrieveEncodedImageFromImage(encodedPic: BufferedImage) : BufferedImage {
+            val startTime = Date()
+
             var retrievedImgHeight = 100
             var retrievedImgWidth = 100
 
@@ -277,6 +277,10 @@ class SteganographyPic {
 
             outputStream.flush()
             outputStream.close()
+
+            val endTime = Date()
+            val timeDiff = (endTime.time - startTime.time) / 1000.0
+            println("\nDecoding Time: $timeDiff secs\n\n")
 
             return retrievedBufferedImg
         }

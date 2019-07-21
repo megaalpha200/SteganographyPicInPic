@@ -5,6 +5,10 @@
 % the new encoded image.
 
 function newImg = embedMessage(originalImg, picToHide)
+    startDateTime = datetime('now', 'Format', 'dd-MM-yyyy HH:mm:ss.SSS');
+    
+    fileID = fopen('debugEn.txt', 'wt');
+
 	bufferGrouping = getBufferGrouping();
 	bufferDelimiter = getBufferDelimiter();
 	padding = getPadding();
@@ -29,15 +33,14 @@ function newImg = embedMessage(originalImg, picToHide)
         error('Original Picture too small!');
     end
     
-    fileID = fopen('debugEN.txt', 'wt');
-    
-    fprintf(fileID, '\nImage in Binary...\n');
+    fprintf(fileID, 'Image in Binary...\n\n');
     
     pixelsLeftForBuffer = totalPixelsForBuffer;
     insertDelimiter = false;
     picToHideYIndex = 1;
     picToHideXIndex = -1;
     shouldEmbedPixel = true;
+    isInnerLoopBroken = false;
     for yIndex = 1:originalPicHeight
         for xIndex = 1:originalPicWidth
             if shouldEmbedPixel
@@ -120,15 +123,17 @@ function newImg = embedMessage(originalImg, picToHide)
 
                 fprintf(fileID, 'New Image Pixel (x:%d, y:%d): R - %s G - %s B - %s\n', xIndex, yIndex, newPixelRedStr, newPixelGreenStr, newPixelBlueStr);
                 fprintf(fileID, 'New Image Pixel (Full): %s\n\n', newPixelRbgBinStr);
-
+                
                 %Replace the RGB values of the current pixel in newImg
                 newImg(yIndex, xIndex, 1) = bin2dec(newPixelRed);
                 newImg(yIndex, xIndex, 2) = bin2dec(newPixelGreen);
                 newImg(yIndex, xIndex, 3) = bin2dec(newPixelBlue);
             else
-                newImg(yIndex, xIndex, 1) = originalImg(yIndex, xIndex, 1);
-                newImg(yIndex, xIndex, 2) = originalImg(yIndex, xIndex, 2);
-                newImg(yIndex, xIndex, 3) = originalImg(yIndex, xIndex, 3);
+%                 newImg(yIndex, xIndex, 1) = originalImg(yIndex, xIndex, 1);
+%                 newImg(yIndex, xIndex, 2) = originalImg(yIndex, xIndex, 2);
+%                 newImg(yIndex, xIndex, 3) = originalImg(yIndex, xIndex, 3);
+                isInnerLoopBroken = true;
+                break;
             end
             
             if (picToHideYIndex == picToHideHeight) && (picToHideXIndex == picToHideWidth)
@@ -145,6 +150,17 @@ function newImg = embedMessage(originalImg, picToHide)
                 picToHideXIndex = picToHideXIndex + 1;
             end
         end
+        
+        if isInnerLoopBroken
+            break;
+        end
     end
+    
     fclose(fileID);
+    
+    endDateTime = datetime('now', 'Format', 'dd-MM-yyyy HH:mm:ss.SSS');
+    td = endDateTime - startDateTime;
+    td.Format = 's';
+    td = char(td);
+    fprintf('\nEncoding Time: %s\n\n', td);
 end
