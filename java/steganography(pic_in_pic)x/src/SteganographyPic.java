@@ -81,7 +81,7 @@ public class SteganographyPic {
         }
 
         final BufferedImage newEncodedBufferedImage = new BufferedImage(originalBufferedImg.getColorModel(), originalBufferedImg.getRaster(), originalBufferedImg.isAlphaPremultiplied(), null);
-        
+
         final File file = new File(".\\debugEn.txt");
         final FileOutputStream outputStream = new FileOutputStream(file);
 
@@ -199,10 +199,10 @@ public class SteganographyPic {
 
         outputStream.flush();
         outputStream.close();
-        
+
         Date endTime = new Date();
-        double timeDiff = (endTime.getTime() - startTime.getTime()) / 1000.0;
-        System.out.println("\nEncoding Time: " +  timeDiff  + " secs\n\n");
+        double timeDiff = (endTime.getTime() - startTime.getTime()) + 0.0;
+        System.out.println("\nEncoding Time: " +  timeDiff  + " milliseconds\n\n");
 
         return newEncodedBufferedImage;
     }
@@ -220,7 +220,7 @@ public class SteganographyPic {
         StringBuilder retrievedBuffer = new StringBuilder();
         int retrievedImgYIndex = 0;
         int retrievedImgXIndex = 0;
-        
+
         final File file = new File(".\\debugRet.txt");
         final FileOutputStream outputStream = new FileOutputStream(file);
 
@@ -289,11 +289,11 @@ public class SteganographyPic {
 
         outputStream.flush();
         outputStream.close();
-        
+
         Date endTime = new Date();
-        double timeDiff = (endTime.getTime() - startTime.getTime()) / 1000.0;
-        System.out.println("\nDecoding Time: " +  timeDiff  + " secs\n\n");
-        
+        double timeDiff = (endTime.getTime() - startTime.getTime()) + 0.0;
+        System.out.println("\nDecoding Time: " +  timeDiff  + " milliseconds\n\n");
+
         return retrievedBufferedImg;
     }
 

@@ -187,8 +187,8 @@ class SteganographyPic {
             outputStream.close()
 
             val endTime = Date()
-            val timeDiff = (endTime.time - startTime.time) / 1000.0
-            println("\nEncoding Time: $timeDiff secs\n\n")
+            val timeDiff = (endTime.time - startTime.time) + 0.0
+            println("\nEncoding Time: $timeDiff milliseconds\n\n")
 
             return newEncodedBufferedImage
         }
@@ -279,8 +279,8 @@ class SteganographyPic {
             outputStream.close()
 
             val endTime = Date()
-            val timeDiff = (endTime.time - startTime.time) / 1000.0
-            println("\nDecoding Time: $timeDiff secs\n\n")
+            val timeDiff = (endTime.time - startTime.time) + 0.0
+            println("\nDecoding Time: $timeDiff milliseconds\n\n")
 
             return retrievedBufferedImg
         }
